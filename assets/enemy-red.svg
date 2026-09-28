@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges" role="img" aria-label="red enemy sprite">
+
+  <!-- Crimson Mantis: open U shape with two very long forward hooked scythes -->
+  <path d="M25 23 32 15 39 23 40 44 36 52 28 52 24 44Z" fill="#691a32" stroke="#fda4af" stroke-width="2"/>
+  <path d="M27 26h10v10H27Z" fill="#fb7185"/><path d="M29 36h6v12h-6Z" fill="#e11d48"/>
+  <path d="M25 28 14 19 7 7 3 6 5 25 16 34 23 36Z" fill="#be123c" stroke="#fecdd3" stroke-width="1.7"/>
+  <path d="M39 28 50 19 57 7 61 6 59 25 48 34 41 36Z" fill="#be123c" stroke="#fecdd3" stroke-width="1.7"/>
+  <path d="M5 10 14 21 22 26 18 30 7 24Z M59 10 50 21 42 26 46 30 57 24Z" fill="#fb7185"/>
+  <path d="M22 31 14 40 7 42 13 47 23 42 28 37ZM42 31 50 40 57 42 51 47 41 42 36 37Z" fill="#9f1239" stroke="#fb7185" stroke-width="1.5"/>
+  <path d="M26 21 31 17 33 17 38 21 36 28 28 28Z" fill="#ffe4e6"/>
+  <path d="M28 30h3v4h-3ZM33 30h3v4h-3Z" fill="#fff1f2"/>
+  <path d="M25 45 19 54 15 57 24 56 29 49ZM39 45 45 54 49 57 40 56 35 49Z" fill="#fb7185"/>
+</svg>

@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <title>Star Squadron</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="game-shell" aria-label="Star Squadron arcade game">
+    <div class="canvas-wrap">
+      <canvas id="game" width="1080" height="820" aria-label="Arcade shooter play field"></canvas>
+
+      <button id="quickRestartButton" class="quick-restart-button hidden" type="button" aria-label="Restart current run">RESTART</button>
+      <button id="pauseButton" class="pause-button hidden" type="button" aria-label="Pause or resume game">PAUSE</button>
+
+      <div id="startOverlay" class="overlay">
+        <div class="panel title-panel wide-panel">
+          <h1>STAR SQUADRON</h1>
+          <p class="menu-tagline">The Hive has cut the Lantern Line. Fly the last squadron through six sectors and silence the Signal.</p>
+          <div class="menu-actions">
+            <button id="startButton" class="primary-button" type="button">START CAMPAIGN</button>
+            <button id="endlessButton" class="secondary-button" type="button">ENDLESS MODE</button>
+            <button id="leaderboardButton" class="secondary-button" type="button">LEADERBOARD</button>
+            <button id="missionSelectButton" class="secondary-button" type="button">MISSION SELECT</button>
+            <button id="bossArchiveButton" class="secondary-button" type="button">BOSS ARCHIVE</button>
+            <button id="enemyArchiveButton" class="secondary-button" type="button">ENEMY ARCHIVE</button>
+            <button id="loreButton" class="secondary-button" type="button">LORE</button>
+            <button id="controlsButton" class="secondary-button" type="button">CONTROLS</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="pauseOverlay" class="overlay pause-overlay hidden" aria-label="Game paused">
+        <div class="panel pause-panel">
+          <h2>PAUSED</h2>
+          <div class="pause-actions">
+            <button id="resumeButton" class="primary-button" type="button">RESUME</button>
+            <button id="restartButton" class="secondary-button" type="button">RESTART RUN</button>
+            <button id="pauseMissionSelectButton" class="secondary-button" type="button">MISSION SELECT</button>
+            <button id="pauseEnemyArchiveButton" class="secondary-button" type="button">ENEMY ARCHIVE</button>
+            <button id="pauseLeaderboardButton" class="secondary-button" type="button">LEADERBOARD</button>
+            <button id="pauseLoreButton" class="secondary-button" type="button">LORE</button>
+            <button id="pauseControlsButton" class="secondary-button" type="button">CONTROLS</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="gameOverOverlay" class="overlay hidden" aria-label="Game over">
+        <div class="panel game-over-panel">
+          <h2>GAME OVER</h2>
+          <div class="results-grid">
+            <div><span>SCORE</span><strong id="gameOverScore">0</strong></div>
+            <div><span>REACHED</span><strong id="gameOverLevel">LEVEL 1</strong></div>
+          </div>
+          <div id="gameOverStats" class="run-stats" aria-label="Run statistics"></div>
+          <p id="gameOverRecord" class="run-record hidden" aria-live="polite"></p>
+          <p id="gameOverBossLine" class="boss-result-line hidden"></p>
+          <div class="pause-actions">
+            <button id="checkpointButton" class="primary-button hidden" type="button">CONTINUE FROM CHECKPOINT</button>
+            <button id="retryLevelButton" class="primary-button" type="button">RETRY LEVEL (PRACTICE)</button>
+            <button id="gameOverRestartButton" class="secondary-button" type="button">RESTART RUN</button>
+            <button id="gameOverMissionSelectButton" class="secondary-button" type="button">MISSION SELECT</button>
+            <button id="gameOverEnemyArchiveButton" class="secondary-button" type="button">ENEMY ARCHIVE</button>
+            <button id="gameOverLeaderboardButton" class="secondary-button" type="button">LEADERBOARD</button>
+            <button id="gameOverMenuButton" class="secondary-button" type="button">MAIN MENU</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="missionOverlay" class="overlay hidden" aria-label="Mission select">
+        <div class="panel selector-panel">
+          <div class="selector-heading">
+            <div>
+              <h2>MISSION SELECT</h2>
+            </div>
+            <button id="missionCloseButton" class="icon-button" type="button" aria-label="Close mission select">×</button>
+          </div>
+          <p class="selector-copy">Select a stage. Boss stages appear every five levels; direct starts receive an appropriate campaign loadout.</p>
+          <div id="missionGrid" class="mission-grid" aria-label="Mission buttons"></div>
+          <div class="selector-footer">
+            <button id="missionMenuButton" class="secondary-button compact-button" type="button">MAIN MENU</button>
+            <button id="missionBossArchiveButton" class="secondary-button compact-button" type="button">BOSS ARCHIVE</button>
+            <button id="missionEnemyArchiveButton" class="secondary-button compact-button" type="button">ENEMY ARCHIVE</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="bossOverlay" class="overlay hidden" aria-label="Boss archive">
+        <div class="panel selector-panel boss-panel">
+          <div class="selector-heading">
+            <div>
+              <h2>BOSS ARCHIVE</h2>
+            </div>
+            <button id="bossCloseButton" class="icon-button" type="button" aria-label="Close boss archive">×</button>
+          </div>
+          <p class="selector-copy">Six command ships hold the six sectors of the Lantern Line, one every five levels. Select a dossier to practice the fight.</p>
+          <div id="bossGrid" class="boss-grid" aria-label="Boss dossiers"></div>
+          <div class="selector-footer">
+            <button id="bossMenuButton" class="secondary-button compact-button" type="button">MAIN MENU</button>
+            <button id="bossMissionSelectButton" class="secondary-button compact-button" type="button">MISSION SELECT</button>
+            <button id="bossEnemyArchiveButton" class="secondary-button compact-button" type="button">ENEMY ARCHIVE</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="enemyOverlay" class="overlay hidden" aria-label="Enemy archive">
+        <div class="panel selector-panel enemy-panel">
+          <div class="selector-heading">
+            <div>
+              <h2>ENEMY ARCHIVE</h2>
+            </div>
+            <button id="enemyCloseButton" class="icon-button" type="button" aria-label="Close enemy archive">×</button>
+          </div>
+          <p class="selector-copy">Every caste answers the same Signal. New castes join the swarm as you push deeper into the Lantern Line.</p>
+          <div id="enemyGrid" class="enemy-grid" aria-label="Enemy dossiers"></div>
+          <div class="selector-footer">
+            <button id="enemyMenuButton" class="secondary-button compact-button" type="button">MAIN MENU</button>
+            <button id="enemyMissionSelectButton" class="secondary-button compact-button" type="button">MISSION SELECT</button>
+            <button id="enemyBossArchiveButton" class="secondary-button compact-button" type="button">BOSS ARCHIVE</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="upgradeOverlay" class="overlay hidden" aria-label="Choose ship upgrade">
+        <div class="panel selector-panel upgrade-panel">
+          <div class="selector-heading">
+            <div>
+              <h2>CHOOSE ONE</h2>
+            </div>
+            <div class="upgrade-next-badge" id="upgradeNextLevel">NEXT: LEVEL 2</div>
+          </div>
+          <p id="upgradeCopy" class="selector-copy">One permanent upgrade per cleared level.</p>
+          <div id="upgradeGrid" class="upgrade-grid" aria-label="Upgrade choices"></div>
+        </div>
+      </div>
+
+      <div id="controlsOverlay" class="overlay hidden" aria-label="Controls">
+        <div class="panel controls-panel">
+          <h2>CONTROLS</h2>
+          <div class="control-list">
+            <div><strong>MOVE</strong><span>WASD or Arrow Keys</span></div>
+            <div><strong>FIRE / SELECT</strong><span>Space or Enter</span></div>
+            <div><strong>PAUSE / BACK</strong><span>P or Esc</span></div>
+            <div><strong>MENU NAVIGATION</strong><span>WASD or Arrow Keys</span></div>
+            <div><strong>SKIP BRIEFING</strong><span>Space or Enter</span></div>
+            <div><strong>MUTE / UNMUTE</strong><span>M</span></div>
+            <div><strong>RESTART RUN</strong><span>R twice (once when paused)</span></div>
+          </div>
+          <button id="controlsCloseButton" class="primary-button" type="button">BACK</button>
+        </div>
+      </div>
+
+      <div id="victoryOverlay" class="overlay hidden" aria-label="Campaign complete">
+        <div class="panel game-over-panel">
+          <h2>CAMPAIGN COMPLETE</h2>
+          <p>Queen Vesper is gone and the Signal has fallen silent. The Lantern Line is free, for now. Somewhere out there, a new queen is growing.</p>
+          <div class="results-grid">
+            <div><span>FINAL SCORE</span><strong id="victoryScore">0</strong></div>
+            <div><span>UPGRADES</span><strong id="victoryUpgrades">29</strong></div>
+          </div>
+          <div id="victoryStats" class="run-stats" aria-label="Run statistics"></div>
+          <p id="victoryRecord" class="run-record hidden" aria-live="polite"></p>
+          <div class="pause-actions">
+            <button id="victoryRestartButton" class="primary-button" type="button">NEW CAMPAIGN</button>
+            <button id="victoryMissionSelectButton" class="secondary-button" type="button">MISSION SELECT</button>
+            <button id="victoryBossArchiveButton" class="secondary-button" type="button">BOSS ARCHIVE</button>
+            <button id="victoryLeaderboardButton" class="secondary-button" type="button">LEADERBOARD</button>
+            <button id="victoryEndlessButton" class="secondary-button" type="button">ENDLESS MODE</button>
+            <button id="victoryMenuButton" class="secondary-button" type="button">MAIN MENU</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="loreOverlay" class="overlay hidden" aria-label="Lore">
+        <div class="panel selector-panel lore-panel">
+          <div class="selector-heading">
+            <div>
+              <p class="eyebrow">LORE</p>
+              <h2>THE LANTERN LINE</h2>
+            </div>
+            <button id="loreCloseButton" class="icon-button" type="button" aria-label="Close lore">×</button>
+          </div>
+          <p id="loreIntro" class="lore-intro"></p>
+          <div id="loreList" class="lore-list"></div>
+          <div id="loreEnding" class="lore-ending"></div>
+          <div class="selector-footer">
+            <button id="loreBossArchiveButton" class="secondary-button compact-button" type="button">BOSS ARCHIVE</button>
+            <button id="loreEnemyArchiveButton" class="secondary-button compact-button" type="button">ENEMY ARCHIVE</button>
+            <button id="loreBackButton" class="primary-button compact-button" type="button">BACK</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="leaderboardOverlay" class="overlay hidden" aria-label="Leaderboard">
+        <div class="panel leaderboard-panel">
+          <div class="selector-heading">
+            <div><h2>HIGH SCORES</h2><p class="leaderboard-subtitle">Separate records for Campaign and Endless.</p></div>
+            <button id="leaderboardCloseButton" class="icon-button" type="button" aria-label="Close leaderboard">×</button>
+          </div>
+          <div class="leaderboard-tabs" role="group" aria-label="Leaderboard type">
+            <button id="leaderboardCampaignTab" class="leaderboard-tab active" type="button">CAMPAIGN</button>
+            <button id="leaderboardEndlessTab" class="leaderboard-tab" type="button">ENDLESS</button>
+          </div>
+          <div id="leaderboardList" class="leaderboard-list" aria-label="High score table"></div>
+          <div class="score-entry-panel">
+            <div>
+              <span class="score-entry-label">CURRENT RUN</span>
+              <strong id="leaderboardCurrentScore">0</strong>
+              <span id="leaderboardCurrentMode" class="score-entry-mode">CAMPAIGN</span>
+            </div>
+            <label for="leaderboardName">CALLSIGN</label>
+            <input id="leaderboardName" type="text" maxlength="10" autocomplete="off" spellcheck="false" value="PLAYER" aria-label="Leaderboard callsign" />
+            <button id="leaderboardSaveButton" class="primary-button" type="button">SAVE SCORE</button>
+          </div>
+          <p id="leaderboardStatus" class="leaderboard-status" aria-live="polite"></p>
+          <div class="selector-footer">
+            <button id="leaderboardMenuButton" class="secondary-button compact-button" type="button">MAIN MENU</button>
+            <button id="leaderboardBackButton" class="primary-button compact-button" type="button">BACK</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="debugOverlay" class="overlay hidden" aria-label="Debug and test tools">
+        <div class="panel debug-panel">
+          <div class="selector-heading">
+            <div><h2>DEBUG / TEST</h2></div>
+            <button id="debugCloseButton" class="icon-button" type="button" aria-label="Close debug tools">×</button>
+          </div>
+          <p class="selector-copy">Hidden test tools, opened with ↑ ↑ ↓ ↓ Space. F6 / F8 hotkeys work for the rest of the session once unlocked.</p>
+          <div class="debug-status-grid">
+            <div><span>FORWARD ASSAULT</span><strong id="debugAssaultStatus">IDLE</strong></div>
+            <div><span>RUN MODE</span><strong id="debugModeStatus">CAMPAIGN</strong></div>
+          </div>
+          <div class="debug-actions">
+            <button id="debugAssaultButton" class="primary-button" type="button">FORCE FORWARD ASSAULT <span>F6</span></button>
+            <button id="debugHudButton" class="secondary-button" type="button">TOGGLE DEBUG HUD <span>F8</span></button>
+          </div>
+          <h3 class="debug-section-title">ANIMATION VIEWER</h3>
+          <p class="selector-copy debug-viewer-copy">Plays each animation on an empty playfield. Esc returns here early. Only available outside a run.</p>
+          <div id="debugAnimGrid" class="debug-anim-grid" aria-label="Animation viewer"></div>
+          <p id="debugResult" class="leaderboard-status" aria-live="polite"></p>
+          <button id="debugBackButton" class="secondary-button" type="button">BACK</button>
+        </div>
+      </div>
+
+      <div id="bossIntroOverlay" class="boss-intro hidden" aria-live="polite">
+        <div class="boss-intro-card">
+          <img id="bossIntroImage" alt="" />
+          <div>
+            <p id="bossIntroLevel" class="eyebrow">LEVEL 5 // COMMAND SIGNAL</p>
+            <h2 id="bossIntroName">THE WARDEN</h2>
+            <p id="bossIntroTitle" class="boss-title"></p>
+            <p id="bossIntroLore" class="boss-intro-lore"></p>
+            <p id="bossIntroCountdown" class="boss-intro-countdown">BATTLE BEGINS IN 10 • SPACE TO SKIP</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="contactIntroOverlay" class="boss-intro contact-intro hidden" aria-live="polite">
+        <div class="boss-intro-card contact-intro-card">
+          <img id="contactIntroImage" alt="" />
+          <div>
+            <p id="contactIntroLevel" class="eyebrow">LEVEL 4 // NEW CONTACT</p>
+            <h2 id="contactIntroName">NEEDLEWING</h2>
+            <p id="contactIntroRole" class="boss-title"></p>
+            <p id="contactIntroCombat" class="contact-intro-combat"></p>
+            <p id="contactIntroLore" class="boss-intro-lore"></p>
+            <p id="contactIntroCountdown" class="boss-intro-countdown">DEPLOYMENT IN 10 • SPACE TO SKIP</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="message" class="message hidden"></div>
+      <div id="pickupNotice" class="pickup-notice hidden" aria-live="polite"></div>
+      <div id="debugNotice" class="debug-notice hidden" aria-live="polite"></div>
+      <div id="debugHud" class="debug-hud hidden" aria-live="off"></div>
+      <div id="viewerHint" class="viewer-hint hidden">ANIMATION VIEWER • <span id="viewerName"></span> • ESC TO RETURN</div>
+    </div>
+
+    <section class="touch-controls" aria-label="Touch controls">
+      <div class="touch-pad">
+        <button class="touch-btn" data-key="ArrowLeft" aria-label="Move left">◀</button>
+        <div class="touch-column">
+          <button class="touch-btn" data-key="ArrowUp" aria-label="Move up">▲</button>
+          <button class="touch-btn" data-key="ArrowDown" aria-label="Move down">▼</button>
+        </div>
+        <button class="touch-btn" data-key="ArrowRight" aria-label="Move right">▶</button>
+      </div>
+      <button class="touch-btn fire" data-key="Space" aria-label="Fire">FIRE</button>
+    </section>
+
+  </main>
+
+  <script src="score-rules.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

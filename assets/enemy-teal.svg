@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges" role="img" aria-label="teal enemy sprite">
+
+  <!-- Rift Rammer: broad-bottomed armored triangular wedge with a reinforced prow -->
+  <path d="M32 2 49 27 61 51 41 57 23 57 3 51 15 27Z" fill="#134e4a" stroke="#99f6e4" stroke-width="2.5"/>
+  <path d="M32 6 42 28 50 47 40 51 24 51 14 47 22 28Z" fill="#0d9488"/>
+  <path d="M32 6 37 23 42 43 32 47 22 43 27 23Z" fill="#ccfbf1"/>
+  <path d="M31 8h2v32h-2Z" fill="#134e4a"/>
+  <path d="M19 28 4 49 21 45 27 34Z M45 28 60 49 43 45 37 34Z" fill="#115e59" stroke="#5eead4" stroke-width="1.5"/>
+  <path d="M18 46 25 43 30 49 24 56 8 53Z M46 46 39 43 34 49 40 56 56 53Z" fill="#042f2e"/>
+  <path d="M13 51 22 52 19 61 14 61ZM51 51 42 52 45 61 50 61Z" fill="#2dd4bf"/>
+  <path d="M28 33h8v5h-8Z" fill="#0f172a"/><path d="M29 33h6v3h-6Z" fill="#99f6e4"/>
+</svg>

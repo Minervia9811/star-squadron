@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges" role="img" aria-label="orange enemy sprite">
+
+  <!-- Sun Bomber: wide twin circular plasma sacs carried by a low flying disc -->
+  <path d="M14 23 24 17 40 17 50 23 54 35 45 46 19 46 10 35Z" fill="#7c2d12" stroke="#fed7aa" stroke-width="2"/>
+  <path d="M21 23 32 18 43 23 46 35 40 41 24 41 18 35Z" fill="#fb923c"/>
+  <path d="M4 23 14 19 22 28 22 40 15 51 4 46 1 35Z M60 23 50 19 42 28 42 40 49 51 60 46 63 35Z" fill="#9a3412" stroke="#fed7aa" stroke-width="2"/>
+  <path d="M4 31 12 24 19 32 16 42 7 44 3 39Z M60 31 52 24 45 32 48 42 57 44 61 39Z" fill="#f97316"/>
+  <path d="M9 30 14 32 14 37 10 41 6 37 6 33Z M55 30 50 32 50 37 54 41 58 37 58 33Z" fill="#fef08a"/>
+  <path d="M24 29h16v8H24Z" fill="#431407"/><path d="M27 30h10v4H27Z" fill="#ffedd5"/>
+  <path d="M19 46 25 44 26 59 19 59ZM45 46 39 44 38 59 45 59Z" fill="#c2410c" stroke="#fdba74" stroke-width="1.6"/>
+  <path d="M20 53h5v9h-5ZM39 53h5v9h-5Z" fill="#fbbf24"/>
+</svg>

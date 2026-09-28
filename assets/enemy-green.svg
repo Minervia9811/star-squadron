@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges" role="img" aria-label="green enemy sprite">
+
+  <!-- Needlewing: extremely long central accelerator with thin lateral blades -->
+  <path d="M32 1 37 21 36 48 33 63 31 63 28 48 27 21Z" fill="#14532d" stroke="#bbf7d0" stroke-width="1.7"/>
+  <path d="M31 4 34 20 34 48 32 60 30 48 30 20Z" fill="#86efac"/>
+  <path d="M27 24 9 31 3 45 23 39 29 32Z" fill="#166534" stroke="#4ade80" stroke-width="1.7"/>
+  <path d="M37 24 55 31 61 45 41 39 35 32Z" fill="#166534" stroke="#4ade80" stroke-width="1.7"/>
+  <path d="M9 34 26 29 24 33 8 41ZM55 34 38 29 40 33 56 41Z" fill="#bbf7d0"/>
+  <path d="M27 20h10v18H27Z" fill="#052e16" stroke="#dcfce7" stroke-width="1.5"/>
+  <path d="M30 24h4v10h-4Z" fill="#4ade80"/>
+  <path d="M31 3h2v24h-2Z" fill="#fff"/>
+  <path d="M28 49 24 59 29 56Z M36 49 40 59 35 56Z" fill="#22c55e"/>
+</svg>

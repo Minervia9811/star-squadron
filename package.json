@@ -1,0 +1,25 @@
+{
+  "name": "star-squadron",
+  "version": "2.11.0",
+  "description": "A Galaga-inspired Electron arcade shooter with a 30-level campaign, endless mode, separate Campaign/Endless leaderboards, coordinated enemy tactics, bosses, upgrades, lore archives, and debug/test tools.",
+  "main": "main.js",
+  "scripts": {
+    "postinstall": "node scripts/check-install.js",
+    "prestart": "node scripts/check-install.js",
+    "start": "electron . --enable-logging",
+    "start:debug": "electron . --enable-logging --v=1",
+    "test": "node scripts/test-final-scores.js && node scripts/test-renderer-state.js && node scripts/test-boss-progression.js && node scripts/test-balance.js"
+  },
+  "keywords": [
+    "electron",
+    "canvas",
+    "arcade",
+    "galaga",
+    "game"
+  ],
+  "author": "Nick",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^44.4.5"
+  }
+}

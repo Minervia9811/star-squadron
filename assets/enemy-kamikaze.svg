@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" shape-rendering="crispEdges" role="img" aria-label="kamikaze enemy sprite">
+
+  <!-- Shrapnel Kamikaze: broken asymmetric mine with unstable glowing core -->
+  <path d="M30 1 36 12 46 5 44 18 59 15 52 29 63 37 49 40 52 56 39 50 30 63 25 49 10 55 14 42 1 34 15 28 7 15 22 18Z" fill="#4a044e" stroke="#f9a8d4" stroke-width="2"/>
+  <path d="M26 16 37 16 47 27 45 42 34 50 22 44 17 32Z" fill="#9d174d" stroke="#fbcfe8" stroke-width="2"/>
+  <path d="M30 20 38 24 41 34 35 43 26 42 22 32Z" fill="#f472b6"/>
+  <path d="M32 24 36 31 33 39 27 36 27 29Z" fill="#fff1f2"/>
+  <path d="M23 18 27 25 23 32 29 40 23 46M43 22 38 28 43 35 35 45" fill="none" stroke="#fce7f3" stroke-width="2.2"/>
+  <path d="M15 27 20 31 14 36M40 14 42 19 50 17M45 45 52 53" stroke="#f9a8d4" fill="none" stroke-width="2"/>
+</svg>
